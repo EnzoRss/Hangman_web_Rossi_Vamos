@@ -43,5 +43,4 @@ func DisplayArr(arr []string) {
 func (w *Data_Hangman) Init() {
 	w.ChoseWord()
 	w.DisplayLetters()
-	w.Position_init()
 }
