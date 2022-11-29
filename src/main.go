@@ -3,16 +3,18 @@ package main
 import (
 	"html/template"
 	"net/http"
-	// "src/database"
+	"src/database"
 )
 
 func main() {
-	//var test database.Data_Hangman
+	var test database.Data_Hangman
+
+	test.Init()
 
 	tmpl_index := template.Must(template.ParseFiles("database/index.html"))
 	tmpl_hangman := template.Must(template.ParseFiles("database/hangman.html"))
 	http.HandleFunc("/Hangman", func(w http.ResponseWriter, r *http.Request) {
-		tmpl_hangman.Execute(w, nil)
+		tmpl_hangman.Execute(w, test)
 	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl_index.Execute(w, nil)

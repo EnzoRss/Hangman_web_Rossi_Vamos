@@ -1,18 +1,11 @@
 package database
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strings"
 )
 
-func (w *Data_Hangman) Input() {
+func (w *Data_Hangman) Input(input string) {
 	for w.Attempts < 10 {
-		scanner := bufio.NewScanner(os.Stdin)
-		fmt.Printf("Ecrit la lettre ou le mots de ton choix : ")
-		scanner.Scan()
-		input := scanner.Text()
 		if VerifInput(input) {
 			if len(input) >= 2 {
 				w.VerifWord(input)
@@ -31,9 +24,6 @@ func (w *Data_Hangman) Input() {
 
 			fmt.Println("il vous reste encore ", 10-w.Attempts, " d'essaie")
 
-		} else if input == "STOP" {
-			w.saveData()
-			break
 		} else {
 			fmt.Println("vous n'avez pas rentrée un chractère acceptable ")
 		}
@@ -102,17 +92,17 @@ func (w Data_Hangman) VerifNbLetter(str string) int {
 	return compt
 }
 
-func (w *Data_Hangman) Position_init() {
-	arr, _ := os.ReadFile("database/hangman.txt")
-	arrS := strings.Split(string(arr), "=========")
-	for i := range arrS {
-		w.HangmanPositions[i] = arrS[i]
-	}
-	for i := 0; i < len(w.HangmanPositions)-1; i++ {
-		w.HangmanPositions[i] += "========="
-	}
+// func (w *Data_Hangman) Position_init() {
+// 	arr, _ := os.ReadFile("database/hangman.txt")
+// 	arrS := strings.Split(string(arr), "=========")
+// 	for i := range arrS {
+// 		w.HangmanPositions[i] = arrS[i]
+// 	}
+// 	for i := 0; i < len(w.HangmanPositions)-1; i++ {
+// 		w.HangmanPositions[i] += "========="
+// 	}
 
-}
+// }
 
 func (w Data_Hangman) VerifVictory() bool {
 	var temp bool
