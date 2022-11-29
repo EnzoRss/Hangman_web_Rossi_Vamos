@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+   
+    margin: 0;
+    background-image: url(https://media.istockphoto.com/id/1278507736/fr/vectoriel/cadre-vectoriel-de-retour-%C3%A0-l%C3%A9cole-avec-des-symboles-dic%C3%B4ne-de-griffonnage-d%C3%A9ducation.jpg?s=612x612&w=0&k=20&c=-4QC0SBJMiiVjg3Ok2xko60p5FfBGEKnDoOh96qTAdo=);
+    background-size: 1930px 930px;
+    background-repeat: no-repeat;
+}
+
+
+.text{
+    text-align: center;
+    position: relative;
+top: 170px;
+}
+
+.rejouer {
+    position: absolute;
+    top: 70%;
+    right: 43%;
+    margin: 20px;
+    text-decoration: none;
+    color: black;
+   
+}
+
+.rejouer:hover{
+    color: white
+}
