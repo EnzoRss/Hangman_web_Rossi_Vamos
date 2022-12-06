@@ -2,36 +2,35 @@ package database
 
 import (
 	"fmt"
+	"os"
+	"strings"
 )
 
 func (w *Data_Hangman) Input(input string) {
-	for w.Attempts < 10 {
-		if VerifInput(input) {
-			if len(input) >= 2 {
-				w.VerifWord(input)
-				if w.VerifWord(input) {
-					fmt.Println("vous avez gagner !!!")
-					break
-				}
-			} else if len(input) == 1 {
-				w.VerifLetter(input)
-				if !w.VerifVictory() {
-					fmt.Println("vous avez gagner !!!")
-					break
-				}
+	if VerifInput(input) {
+		if len(input) >= 2 {
+			if w.VerifWord(input) {
+				fmt.Println("vous avez gagner !!!")
 			}
-			fmt.Println(w.HangmanPositions[w.Attempts])
-
-			fmt.Println("il vous reste encore ", 10-w.Attempts, " d'essaie")
-
-		} else {
-			fmt.Println("vous n'avez pas rentrée un chractère acceptable ")
+		} else if len(input) == 1 {
+			w.VerifLetter(input)
+			if !w.VerifVictory() {
+				fmt.Println("vous avez gagner !!!")
+			}
 		}
+		fmt.Println(w.HangmanPositions[w.Attempts])
 
+		fmt.Println("il vous reste encore ", 10-w.Attempts, " d'essaie")
+
+	} else if input == "STOP" {
+		w.saveData()
+	} else {
+		fmt.Println("vous n'avez pas rentrée un charactère acceptable ")
 	}
 	if w.Attempts == 10 {
 		fmt.Println("Vous avez PERDU !!!")
 	}
+	w.wa_to_w()
 }
 
 func (w *Data_Hangman) VerifLetter(str string) {
@@ -66,7 +65,7 @@ func (w *Data_Hangman) VerifLetter(str string) {
 
 func (w *Data_Hangman) VerifWord(str string) bool {
 	temp := true
-	for i := 0; i < len(w.ToFind)-1; i++ {
+	for i := range str {
 		if str[i] != w.ToFind[i+1] {
 			temp = false
 		}
@@ -76,7 +75,8 @@ func (w *Data_Hangman) VerifWord(str string) bool {
 		return true
 	} else {
 		fmt.Println("Vous vous êtes trompé ")
-		w.Attempts += 2
+		w.Attempts = w.Attempts + 2
+		fmt.Println(w.Attempts)
 		fmt.Println(w.Word)
 		return false
 	}
@@ -84,7 +84,7 @@ func (w *Data_Hangman) VerifWord(str string) bool {
 
 func (w Data_Hangman) VerifNbLetter(str string) int {
 	var compt int
-	for _, letter := range w.ToFind {
+	for _, letter := range str {
 		if string(letter) == w.ToFind {
 			compt++
 		}
@@ -92,17 +92,17 @@ func (w Data_Hangman) VerifNbLetter(str string) int {
 	return compt
 }
 
-// func (w *Data_Hangman) Position_init() {
-// 	arr, _ := os.ReadFile("database/hangman.txt")
-// 	arrS := strings.Split(string(arr), "=========")
-// 	for i := range arrS {
-// 		w.HangmanPositions[i] = arrS[i]
-// 	}
-// 	for i := 0; i < len(w.HangmanPositions)-1; i++ {
-// 		w.HangmanPositions[i] += "========="
-// 	}
+func (w *Data_Hangman) Position_init() {
+	arr, _ := os.ReadFile("database/hangman.txt")
+	arrS := strings.Split(string(arr), "=========")
+	for i := range arrS {
+		w.HangmanPositions[i] = arrS[i]
+	}
+	for i := 0; i < len(w.HangmanPositions)-1; i++ {
+		w.HangmanPositions[i] += "========="
+	}
 
-// }
+}
 
 func (w Data_Hangman) VerifVictory() bool {
 	var temp bool
@@ -111,16 +111,19 @@ func (w Data_Hangman) VerifVictory() bool {
 			temp = true
 		}
 	}
+
 	return temp
 }
 
 func VerifInput(str string) bool {
 	var temp bool
 	for _, letter := range str {
-		if letter >= 97 && letter <= 122 {
+		if letter >= 7 && letter <= 122 {
 			temp = true
+
 		} else {
 			temp = false
+
 		}
 	}
 	return temp
