@@ -1,3 +1,5 @@
+/* style.css */
+
 * {
     box-sizing: border-box;
 }
@@ -9,21 +11,17 @@ body {
     padding:0;
 }
 
-
 .text{
-    
     position: relative;
-top: 170px;
+    top: 170px;
 }
 
 .rejouer {
     position: absolute;
-    top: 70%;
-    
-    margin: 20px;
+    top: 90%;
+    left: 20%;
     text-decoration: none;
     color: black;
-   
 }
 
 .rejouer:hover{
@@ -31,14 +29,14 @@ top: 170px;
 }
 
 .Baniere_gauche {
-    background-color: aquamarine;
+    background-color:cornflowerblue;
     width: 50%;
     height: 100vh;
     float: left;
 }
 
 .Baniere_droite {
-    background-color: aqua;
+    background-color: rgb(247, 247, 247);
     width: 50%;
     height: 100vh;
 }

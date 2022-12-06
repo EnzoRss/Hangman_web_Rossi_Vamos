@@ -19,6 +19,8 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl_index.Execute(w, nil)
 	})
+	fs := http.FileServer(http.Dir("css"))
+	http.Handle("/css/", http.StripPrefix("/css/", fs)) 
 
 	http.ListenAndServe(":80", nil)
 
