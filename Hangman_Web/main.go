@@ -17,15 +17,14 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl_index.Execute(w, nil)
 	})
+
 	http.HandleFunc("/Hangman", func(w http.ResponseWriter, r *http.Request) {
-		tmpl_hangman.Execute(w, test)
 		if r.Method == "POST" {
 			value := r.FormValue("lettre")
 			fmt.Println(value)
 			test.Input(value)
-			fmt.Print(test.Word_Display)
-			r.Form.Get(test.Word_Display)
 		}
+		tmpl_hangman.Execute(w, test)
 	})
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))

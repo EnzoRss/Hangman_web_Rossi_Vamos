@@ -7,7 +7,7 @@ import (
 )
 
 func (w *Data_Hangman) Input(input string) {
-	if VerifInput(input) {
+	if VerifInput(input) && !VerifArr(w.propo_let, input) {
 		if len(input) >= 2 {
 			if w.VerifWord(input) {
 				fmt.Println("vous avez gagner !!!")
@@ -24,11 +24,18 @@ func (w *Data_Hangman) Input(input string) {
 
 	} else if input == "STOP" {
 		w.saveData()
+	} else if VerifArr(w.propo_let, input) {
+		fmt.Println("Vous avez déja proposer ce mot")
+
 	} else {
 		fmt.Println("vous n'avez pas rentrée un charactère acceptable ")
 	}
 	if w.Attempts == 10 {
 		fmt.Println("Vous avez PERDU !!!")
+	}
+
+	if !VerifArr(w.propo_let, input) {
+		w.propo_let = append(w.propo_let, input)
 	}
 	w.wa_to_w()
 }
@@ -127,4 +134,14 @@ func VerifInput(str string) bool {
 		}
 	}
 	return temp
+}
+
+func VerifArr(arr []string, str string) bool {
+	verif := false
+	for _, letter := range arr {
+		if letter == str {
+			verif = true
+		}
+	}
+	return verif
 }

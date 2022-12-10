@@ -13,7 +13,9 @@ type Data_Hangman struct {
 	ToFind           string     // Final word chosen by the program at the beginning. It is the word to find
 	Attempts         int        // Number of attempts left
 	HangmanPositions [11]string // It can be the array where the positions parsed in "hangman.txt" are stored
-	Word_Display     string
+	Word_Display     string     // The word which use for the display
+	propo_let        []string   // list of the letter already propose
+	level            string     // level of the game
 }
 
 func (w *Data_Hangman) ChoseWord() {
@@ -40,8 +42,6 @@ func (w *Data_Hangman) DisplayLetters() {
 	}
 	fmt.Print("Voici votre mots avec les lettre donner :")
 	w.wa_to_w()
-	fmt.Println(w.Word_Display)
-
 }
 
 func DisplayArr(arr []string) {
@@ -62,6 +62,5 @@ func (w *Data_Hangman) wa_to_w() {
 	w.Word_Display = w.Word[0]
 	for i := 1; i <= len(w.Word)-1; i++ {
 		w.Word_Display += w.Word[i]
-		fmt.Println(w.Word_Display)
 	}
 }
