@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var test database.Data_Hangman
-	test.Init()
+	cmpt := 0
 
 	tmpl_index := template.Must(template.ParseFiles("templates/index.html"))
 	tmpl_hangman := template.Must(template.ParseFiles("templates/hangman.html"))
@@ -18,14 +18,21 @@ func main() {
 		tmpl_index.Execute(w, nil)
 	})
 
-	http.HandleFunc("/Hangman", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "POST" {
-			value := r.FormValue("lettre")
-			fmt.Println(value)
-			test.Input(value)
-		}
-		tmpl_hangman.Execute(w, test)
-	})
+	http.HandleFunc("/Hangman",
+		func(w http.ResponseWriter, r *http.Request) {
+			if cmpt == 0 {
+				test.Username = r.URL.Query().Get("username")
+				test.Level = r.FormValue("level")
+				test.Init()
+				cmpt++
+			}
+			if r.Method == "POST" {
+				value := r.FormValue("lettre")
+				fmt.Println(value)
+				test.Input(value)
+			}
+			tmpl_hangman.Execute(w, test)
+		})
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 

@@ -15,13 +15,15 @@ type Data_Hangman struct {
 	HangmanPositions [11]string // It can be the array where the positions parsed in "hangman.txt" are stored
 	Word_Display     string     // The word which use for the display
 	propo_let        []string   // list of the letter already propose
-	level            string     // level of the game
+	Level            string     // level of the game
+	Username         string     // username of the player
+	path_file        string     //path of the file use for the game
 }
 
 func (w *Data_Hangman) ChoseWord() {
 	rand.Seed(time.Now().UnixNano())
-	arr, _ := os.ReadFile("database/Word.txt")
-	arrWord := strings.Split(string(arr), string(13))
+	arr, _ := os.ReadFile(w.path_file)
+	arrWord := strings.Split(string(arr), "\n")
 	w.ToFind = arrWord[rand.Intn(len(arrWord))]
 	fmt.Println(w.ToFind)
 }
@@ -29,7 +31,7 @@ func (w *Data_Hangman) ChoseWord() {
 func (w *Data_Hangman) DisplayLetters() {
 	rand.Seed(time.Now().UnixNano())
 	n := len(w.ToFind)/2 - 1
-	for i := 0; i < len(w.ToFind)-1; i++ {
+	for i := 0; i < len(w.ToFind); i++ {
 		w.Word = append(w.Word, "_")
 	}
 	for i := 0; i < n; i++ {
@@ -37,10 +39,10 @@ func (w *Data_Hangman) DisplayLetters() {
 		if nb == 0 {
 			w.Word[nb] = string(w.ToFind[nb])
 		} else if nb > 1 {
-			w.Word[nb-1] = string(w.ToFind[nb])
+			w.Word[nb] = string(w.ToFind[nb])
 		}
 	}
-	fmt.Print("Voici votre mots avec les lettre donner :")
+	fmt.Print("Voici votre mots avec les lettre donner :\n")
 	w.wa_to_w()
 }
 
@@ -52,6 +54,7 @@ func DisplayArr(arr []string) {
 }
 
 func (w *Data_Hangman) Init() {
+	w.verif_level()
 	w.ChoseWord()
 	w.DisplayLetters()
 	w.Position_init()
@@ -59,8 +62,21 @@ func (w *Data_Hangman) Init() {
 }
 
 func (w *Data_Hangman) wa_to_w() {
+	fmt.Println(w.Word)
+	fmt.Println(w.ToFind)
 	w.Word_Display = w.Word[0]
 	for i := 1; i <= len(w.Word)-1; i++ {
+		fmt.Println(w.Word_Display)
 		w.Word_Display += w.Word[i]
+	}
+}
+
+func (w *Data_Hangman) verif_level() {
+	if w.Level == "easy" {
+		w.path_file = "database/Easy.txt"
+	} else if w.Level == "medium" {
+		w.path_file = "database/medium.txt"
+	} else if w.Level == "hard" {
+		w.path_file = "database/hard.txt"
 	}
 }

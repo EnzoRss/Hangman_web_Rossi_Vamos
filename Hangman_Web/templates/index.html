@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" class="main_page">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/main_page.css">
+    <title>Page Principal</title>
 </head>
-<body>
-    <div> <a href="/Hangman">voici le lien sur la page Hangman</a></div>
 
-    <form action="" method="get">
-        <input type="checkbox" name="level" id="">
-        <label for="easy"> easy</label>
-        <input type="checkbox" name="level" id="">
-        <label for="easy"> easy</label>
-        <input type="checkbox" name="level" id="">
-        <label for="easy"> easy</label>
-    </form>
-       
+<body>
+    <div class="header">
+        <img src="../asset/hangmanlogo.png" alt="">
+    </div>
+    <div>
+        <form class="form_start" action="/Hangman" method="get">
+            <div>
+                <p>Entez votre nom d'utilisateur :</p>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="form_radio">
+                <div class ="input radio">
+                    <input type="radio" name= "level" class="choix" id="easy" value ="easy">
+                    <label for="easy"> easy</label>
+                </div>
+                <div class ="input radio" id="long">
+                    <input type="radio" name="level" class="choix" id="medium" value="medium">
+                    <label for="medium"> medium</label>
+                </div>
+                <div class ="input radio">
+                    <input type="radio" name="level" class="choix" id="hard" value="hard">
+                    <label for="hard"> hard</label>
+                </div>
+            </div>
+            <div>
+                <input class = "input"type="submit" value="Commencer la partie">
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>

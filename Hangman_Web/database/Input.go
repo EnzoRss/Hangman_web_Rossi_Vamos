@@ -54,7 +54,7 @@ func (w *Data_Hangman) VerifLetter(str string) {
 					fmt.Println("La lettre est déja présente")
 					break
 				} else {
-					w.Word[index-1] = string(letter)
+					w.Word[index] = string(letter)
 					compt++
 					verify = true
 				}
