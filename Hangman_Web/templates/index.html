@@ -11,31 +11,34 @@
 
 <body>
     <div class="header">
-        <img src="../asset/hangmanlogo.png" alt="">
+        <img class="logo" src="../asset/hangmanlogo.png" alt="">
     </div>
     <div>
         <form class="form_start" action="/Hangman" method="get">
-            <div>
-                <p>Entez votre nom d'utilisateur :</p>
-                <input type="text" name="username" id="username">
-            </div>
-            <div class="form_radio">
-                <div class ="input radio">
-                    <input type="radio" name= "level" class="choix" id="easy" value ="easy">
-                    <label for="easy"> easy</label>
+        <div class="bloc-choix">
+                <div>
+                    <p>Entez votre nom d'utilisateur :</p>
+                    <input type="text" name="username" id="username">
                 </div>
-                <div class ="input radio" id="long">
-                    <input type="radio" name="level" class="choix" id="medium" value="medium">
-                    <label for="medium"> medium</label>
+                <div class="form_radio">
+                    <div class ="input radio">
+                        <input type="radio" name= "level" class="choix" id="easy" value ="easy">
+                        <label for="easy"> easy</label>
+                    </div>
+                    <div class ="input radio" id="long">
+                        <input type="radio" name="level" class="choix" id="medium" value="medium">
+                        <label for="medium"> medium</label>
+                    </div>
+                    <div class ="input radio">
+                        <input type="radio" name="level" class="choix" id="hard" value="hard">
+                        <label for="hard"> hard</label>
+                    </div>
                 </div>
-                <div class ="input radio">
-                    <input type="radio" name="level" class="choix" id="hard" value="hard">
-                    <label for="hard"> hard</label>
-                </div>
-            </div>
+            
             <div>
                 <input class = "input"type="submit" value="Commencer la partie">
             </div>
+        </div>
         </form>
     </div>
 </body>
