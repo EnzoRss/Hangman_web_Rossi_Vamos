@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/hangman.css">
     <title>Document</title>
 </head>
 <body class ="body_2">
@@ -13,8 +14,8 @@
         <a href="index.html" class="rejouer"><strong>
                 <h2>Recommencer le jeux</h2>
             </strong></a>
-            <div>{{.Word_Display}}</div>
-                
+            <div id="Word_Display">{{.Word_Display}}</div>
+        <div class="bloc-texte">      
         <form action="/Hangman" method="POST">
             <label for="lettre">
                 <h1>Rentrer votre lettre</h1>
@@ -22,9 +23,46 @@
             <input type="text" name="lettre" id="letter" placeholder="abcdefg..." required><br><br>
             <input type="submit" value="Valider votre lettre">
         </form>
+        </div>
     </div>
     <div class="Baniere_droite">
-        <p> </p>
+        <div id="bloc-hangman">
+            {{ if lt .Attempts 8}}
+            <div class="hangman-item" style="width: 35%; position:relative; left: 8%;">
+                {{ if lt .Attempts 6}}
+                <div id="corde" class="hangman-item">
+                    {{ if lt .Attempts 5}}
+                    <div id="tete" class="hangman-item">
+                        {{ if lt .Attempts 4}}
+                        <div id="corp" class="hangman-item">
+                            {{ if lt .Attempts 3}}
+                            <div id="bras" class="hangman-item"></div>
+                            {{end}}
+                            {{ if lt .Attempts 2}}
+                            <div class="hangman-item jambe" id="jambe-gauche"></div>
+                            {{end}}
+                            {{ if lt .Attempts 1}}
+                            <div class="hangman-item jambe" id="jambe-droite"></div>
+                            {{end}}
+                        </div>
+                        {{end}}
+                    </div>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+            {{end}}
+            {{ if lt .Attempts 9}}
+            <div id="trunc" class="hangman-item" style="height: 50vh;width:0px;">
+                {{ if lt .Attempts 7}}
+                <div class="hangman-item" style="transform: rotate(45deg); position:relative; top: -20px; left: 35px;height: 100px;"></div>
+                {{end}}
+            </div>
+            {{ end }}
+            {{ if lt .Attempts 10}}
+             <div id="base" style="width: 50%" class="hangman-item"></div>
+            {{end}}
+        </div>
     </div>
 </body>
 </html>

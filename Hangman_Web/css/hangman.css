@@ -1,0 +1,72 @@
+
+#bloc-hangman {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex:1;
+    position: relative;
+    top: 200px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: cornflowerblue;
+}
+
+.right {
+    align-items: center;
+    background-color:ivory;
+}
+
+.hangman-item {
+    /* display: flex; */
+    border: 3px solid black;
+    background-color: black;
+}
+
+#corde {
+    border-style: dashed; 
+    background: none; 
+    position:absolute; 
+    right: 0;
+    height: 100px
+}
+
+#tete {
+    border-radius: 50%;
+    height: 100px;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: 100%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+#corp {
+    position: absolute;
+    top: 100%;
+    height: 150px;
+}
+
+#bras {
+    position: inherit;
+    width: 120px;
+    top: 50px;
+    transform: translateX(-50%);
+}
+.jambe {
+    position: inherit;
+    height: 80px;
+    bottom: -85px;
+    left: -3px;
+    transform-origin: top left;
+}
+#jambe-droite {
+    transform: rotate(-30deg);
+}
+#jambe-gauche {
+    transform: rotate(30deg);
+}
