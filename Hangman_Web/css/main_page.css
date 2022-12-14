@@ -6,13 +6,14 @@
 
 @font-face {
     font-family: Inconsolata-light;
-    src: url(../asset/Inconsolata/static/Inconsolata/Inconsolata-Light.ttf);
+    src: url(/asset/Inconsolata/static/Inconsolata/Inconsolata-Light.ttf);
 }
 
 .header{
     display: flex;
-    justify-content: center;
-    margin-bottom: 50%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10%;
 
 }
 .main_page{ 
@@ -44,7 +45,7 @@ input[type="radio"].choix:checked + label {
 .form_start{
     display: flex;
     flex-direction: column; 
-    margin-left :20%; 
+    margin-left :40%; 
 
 }
 
