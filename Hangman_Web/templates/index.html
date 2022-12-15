@@ -13,38 +13,35 @@
     <div class="header">
         <img src="../css/asset/hangmanlogo.png" alt="">
         <p>Tentez de deviner le mot secret en entrant des lettres une par une au clavier ou le mot en entier.
-            <br> Ne gaspillez pas vos coups, car si trop de vos choix sont erronés vous tuerez le pendu et vous perdrez la partie.
-
+            <br> Ne gaspillez pas vos coups, car si trop de vos choix sont erronés vous tuerez le pendu et vous perdrez
+            la partie.
         </p>
-
-    <div>
-        <form class="form_start" action="/Hangman" method="get">
+    </div>
+    <form class="form_start" action="/Hangman" method="get">
         <div class="bloc-choix">
-                <div>
-                    <p>Entez votre nom d'utilisateur :</p>
-                    <input type="text" name="username" id="username">
-                </div>
-                <div class="form_radio">
-                    <div class ="input radio">
-                        <input type="radio" name= "level" class="choix" id="easy" value ="easy">
-                        <label for="easy"> easy</label>
-                    </div>
-                    <div class ="input radio" id="long">
-                        <input type="radio" name="level" class="choix" id="medium" value="medium">
-                        <label for="medium"> medium</label>
-                    </div>
-                    <div class ="input radio">
-                        <input type="radio" name="level" class="choix" id="hard" value="hard">
-                        <label for="hard"> hard</label>
-                    </div>
-                </div>
-            
             <div>
-                <input class = "input"type="submit" value="Commencer la partie">
+                <p>Entez votre nom d'utilisateur :</p>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="form_radio">
+                <div class="input radio">
+                    <input type="radio" name="level" class="choix" id="easy" value="easy">
+                    <label for="easy"> easy</label>
+                </div>
+                <div class="input radio" id="long">
+                    <input type="radio" name="level" class="choix" id="medium" value="medium">
+                    <label for="medium"> medium</label>
+                </div>
+                <div class="input radio">
+                    <input type="radio" name="level" class="choix" id="hard" value="hard">
+                    <label for="hard"> hard</label>
+                </div>
+            </div>
+            <div>
+                <input class="input" type="submit" value="Commencer la partie">
             </div>
         </div>
-        </form>
-    </div>
+    </form>
 </body>
 
 </html>
