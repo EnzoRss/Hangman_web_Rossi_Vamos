@@ -11,11 +11,15 @@ func (w *Data_Hangman) Input(input string) {
 		if len(input) >= 2 {
 			if w.VerifWord(input) {
 				fmt.Println("vous avez gagner !!!")
+				w.result = "vous avez gagner !!!"
+				w.win++
 			}
 		} else if len(input) == 1 {
 			w.VerifLetter(input)
 			if !w.VerifVictory() {
 				fmt.Println("vous avez gagner !!!")
+				w.result ="vous avez gagner !!!"
+				w.win++
 			}
 		}
 		fmt.Println(w.HangmanPositions[w.Attempts])
@@ -26,12 +30,14 @@ func (w *Data_Hangman) Input(input string) {
 		w.saveData()
 	} else if VerifArr(w.propo_let, input) {
 		fmt.Println("Vous avez déja proposer ce mot")
-
+		w.result="Vous avez déja proposer ce mot"
 	} else {
 		fmt.Println("vous n'avez pas rentrée un charactère acceptable ")
 	}
 	if w.Attempts == 10 {
 		fmt.Println("Vous avez PERDU !!!")
+		w.result ="Vous avez PERDU !!!"
+		w.lose++
 	}
 
 	if !VerifArr(w.propo_let, input) {
@@ -52,6 +58,7 @@ func (w *Data_Hangman) VerifLetter(str string) {
 				}
 				if temp && compt <= w.VerifNbLetter(str) {
 					fmt.Println("La lettre est déja présente")
+					w.result ="La lettre est déja présente"
 					break
 				} else {
 					w.Word[index] = string(letter)
@@ -63,9 +70,12 @@ func (w *Data_Hangman) VerifLetter(str string) {
 	}
 	if verify && !temp {
 		fmt.Println("Vous avez ajouter une lettre")
+		w.result = "Vous avez ajouter une lettre"
 	} else if !verify && !temp {
 		fmt.Println("La lettre rentrée n'est pas dans le mots ")
+		w.result ="La lettre rentrée n'est pas dans le mot"
 		w.Attempts++
+		w.point -= 10
 	}
 	fmt.Println(w.Word)
 }
@@ -79,6 +89,7 @@ func (w *Data_Hangman) VerifWord(str string) bool {
 	}
 	if temp {
 		fmt.Println("vous avez trouver le mot")
+		w.result = "vous avez trouver le mot"
 		return true
 	} else {
 		fmt.Println("Vous vous êtes trompé ")

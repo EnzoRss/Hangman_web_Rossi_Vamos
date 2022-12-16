@@ -18,6 +18,10 @@ type Data_Hangman struct {
 	Level            string     // level of the game
 	Username         string     // username of the player
 	path_file        string     //path of the file use for the game
+	result			 string     // result of the input enter on the templates
+	win				 int		// number of win
+	lose			 int 		// number of lose
+	point	 		 int 		// number of point 
 }
 
 func (w *Data_Hangman) ChoseWord() {
@@ -58,6 +62,7 @@ func (w *Data_Hangman) Init() {
 	w.ChoseWord()
 	w.DisplayLetters()
 	w.Position_init()
+	w.point = 100 
 
 }
 
@@ -79,4 +84,13 @@ func (w *Data_Hangman) verif_level() {
 	} else if w.Level == "hard" {
 		w.path_file = "database/hard.txt"
 	}
+}
+
+
+
+func (w *Data_Hangman) ReInit() {
+	w.ChoseWord()
+	w.DisplayLetters()
+	w.Position_init()
+	w.point = 100 
 }
