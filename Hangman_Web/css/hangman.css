@@ -70,3 +70,10 @@
 #jambe-gauche {
     transform: rotate(30deg);
 }
+
+.lose {
+    position: fixed;
+    background-color: ivory;
+    width: 100%;
+    height: 100vh;
+}

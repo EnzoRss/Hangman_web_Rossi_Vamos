@@ -10,6 +10,7 @@
 </head>
 <body class ="body_2">
 
+  
     <div class="Baniere_gauche">
         <a href="index.html" class="rejouer"><strong>
                 <h2>Recommencer le jeux</h2>
@@ -18,30 +19,33 @@
         <div class="bloc-texte">      
         <form action="/Hangman" method="POST">
             <label for="lettre">
-                <h1>Rentrer votre lettre</h1>
+                <h1>Rentrer votre lettre</h1><br>
+                <div class="NbAttempts"><h3>Il vous reste {{.NbAttempts}} tentative</h3></div>
             </label><br>
             <input type="text" name="lettre" id="letter" placeholder="abcdefg..." required><br><br>
-            <input type="submit" value="Valider votre lettre">
+            <input type="submit" value="Valider votre lettre"><br><br><br>
+            <div class="Propo_let">{{.Propo_let}}</div>
         </form>
         </div>
     </div>
+  
     <div class="Baniere_droite">
         <div id="bloc-hangman">
-            {{ if lt .Attempts 8}}
+            {{ if lt .NbAttempts 8}}
             <div class="hangman-item" style="width: 35%; position:relative; left: 8%;">
-                {{ if lt .Attempts 6}}
+                {{ if lt .NbAttempts 6}}
                 <div id="corde" class="hangman-item">
-                    {{ if lt .Attempts 5}}
+                    {{ if lt .NbAttempts 5}}
                     <div id="tete" class="hangman-item">
-                        {{ if lt .Attempts 4}}
+                        {{ if lt .NbAttempts 4}}
                         <div id="corp" class="hangman-item">
-                            {{ if lt .Attempts 3}}
+                            {{ if lt .NbAttempts 3}}
                             <div id="bras" class="hangman-item"></div>
                             {{end}}
-                            {{ if lt .Attempts 2}}
+                            {{ if lt .NbAttempts 2}}
                             <div class="hangman-item jambe" id="jambe-gauche"></div>
                             {{end}}
-                            {{ if lt .Attempts 1}}
+                            {{ if lt .NbAttempts 1}}
                             <div class="hangman-item jambe" id="jambe-droite"></div>
                             {{end}}
                         </div>
@@ -52,17 +56,37 @@
                 {{end}}
             </div>
             {{end}}
-            {{ if lt .Attempts 9}}
+            {{ if lt .NbAttempts 9}}
             <div id="trunc" class="hangman-item" style="height: 50vh;width:0px;">
-                {{ if lt .Attempts 7}}
+                {{ if lt .NbAttempts 7}}
                 <div class="hangman-item" style="transform: rotate(45deg); position:relative; top: -20px; left: 35px;height: 100px;"></div>
                 {{end}}
             </div>
             {{ end }}
-            {{ if lt .Attempts 10}}
+            {{ if lt .NbAttempts 10}}
              <div id="base" style="width: 50%" class="hangman-item"></div>
             {{end}}
         </div>
     </div>
+    {{if eq .Result "lose"}}
+        <div class="perdu">
+            <h1 class="text_perdu">Vous avez perdu</h1>
+            <div class="scorboard">Point: {{.Point}} Win: {{.Win}} Lose: {{.Lose}}</div>
+        </div>
+        <a href="index.html" class="rejouer"><strong>
+            <h2>Recommencer le jeux</h2>
+        </strong></a>
+    {{end}}
+    {{if eq .Result "win"}}
+        <div class="win">
+            <h1 class="text_gagner">Vous avez Gagner</h1>
+            <div class="scorboard">Point: {{.Point}} Win: {{.Win}} Lose: {{.Lose}}</div>
+
+        </div>
+        <a href="index.html" class="rejouer"><strong>
+            <h2>Recommencer le jeux</h2>
+        </strong></a>
+    {{end}}
+
 </body>
 </html>

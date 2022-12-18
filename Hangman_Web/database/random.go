@@ -14,14 +14,15 @@ type Data_Hangman struct {
 	Attempts         int        // Number of attempts left
 	HangmanPositions [11]string // It can be the array where the positions parsed in "hangman.txt" are stored
 	Word_Display     string     // The word which use for the display
-	propo_let        []string   // list of the letter already propose
+	Propo_let        []string   // list of the letter already propose
 	Level            string     // level of the game
 	Username         string     // username of the player
 	path_file        string     //path of the file use for the game
-	result			 string     // result of the input enter on the templates
-	win				 int		// number of win
-	lose			 int 		// number of lose
-	point	 		 int 		// number of point 
+	Result			 string     // result of the input enter on the templates
+	Win				 int		// number of win
+	Lose			 int 		// number of lose
+	Point	 		 int 		// number of point 
+	NbAttempts       int
 }
 
 func (w *Data_Hangman) ChoseWord() {
@@ -62,8 +63,8 @@ func (w *Data_Hangman) Init() {
 	w.ChoseWord()
 	w.DisplayLetters()
 	w.Position_init()
-	w.point = 100 
-
+	w.Point = 200 
+	w.NbAttempts = 10
 }
 
 func (w *Data_Hangman) wa_to_w() {
@@ -92,5 +93,5 @@ func (w *Data_Hangman) ReInit() {
 	w.ChoseWord()
 	w.DisplayLetters()
 	w.Position_init()
-	w.point = 100 
+	w.Point = 100 
 }
