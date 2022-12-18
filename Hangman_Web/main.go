@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	var test database.Data_Hangman
+	var test =new(database.Data_Hangman)
 	cmpt := 0
 
 	tmpl_index := template.Must(template.ParseFiles("templates/index.html"))
@@ -28,8 +28,15 @@ func main() {
 			}
 			if r.Method == "POST" {
 				value := r.FormValue("lettre")
-				fmt.Println(value)
-				test.Input(value)
+				rejouer := r.FormValue("rejouer")
+				fmt.Println("rejouer :",rejouer)
+				if rejouer == "rejouer" && cmpt >0 {
+					fmt.Println("ici")
+				 	test.ReInit()
+				 }  else{
+					fmt.Println(value)
+					test.Input(value)
+				}
 			}
 			tmpl_hangman.Execute(w, test)
 		})

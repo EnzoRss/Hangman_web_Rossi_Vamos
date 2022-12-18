@@ -36,7 +36,7 @@ func (w *Data_Hangman) ChoseWord() {
 func (w *Data_Hangman) DisplayLetters() {
 	rand.Seed(time.Now().UnixNano())
 	n := len(w.ToFind)/2 - 1
-	for i := 0; i < len(w.ToFind); i++ {
+	for i := 0; i < len(w.ToFind)-1; i++ {
 		w.Word = append(w.Word, "_")
 	}
 	for i := 0; i < n; i++ {
@@ -63,8 +63,10 @@ func (w *Data_Hangman) Init() {
 	w.ChoseWord()
 	w.DisplayLetters()
 	w.Position_init()
-	w.Point = 200 
+	w.Point =100 
 	w.NbAttempts = 10
+	w.Win = 0
+	w.Lose = 0
 }
 
 func (w *Data_Hangman) wa_to_w() {
@@ -90,8 +92,12 @@ func (w *Data_Hangman) verif_level() {
 
 
 func (w *Data_Hangman) ReInit() {
+	w.Word   = []string{} 
+	w.ToFind = ""
+	w.Word_Display =""
+	w.Propo_let = []string{}
+	w.NbAttempts = 10
+	w.Attempts = 0
 	w.ChoseWord()
 	w.DisplayLetters()
-	w.Position_init()
-	w.Point = 100 
 }

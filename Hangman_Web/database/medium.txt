@@ -20,4 +20,3 @@ transpirer
 plage
 moustique
 faux
-vrai

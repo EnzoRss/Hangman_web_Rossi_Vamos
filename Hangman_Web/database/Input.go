@@ -63,6 +63,7 @@ func (w *Data_Hangman) VerifLetter(str string) {
 				} else {
 					w.Word[index] = string(letter)
 					compt++
+					w.Point += 10
 					verify = true
 				}
 			}

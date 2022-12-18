@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,27 +9,31 @@
     <link rel="stylesheet" href="../css/hangman.css">
     <title>Document</title>
 </head>
-<body class ="body_2">
 
-  
+<body class="body_2">
     <div class="Baniere_gauche">
-        <a href="index.html" class="rejouer"><strong>
+          <form action="/Hangman" method="POST">
+        <button class="relaod" name="rejouer" value="rejouer"><strong>
                 <h2>Recommencer le jeux</h2>
+            </strong></button>
+    </form>
             </strong></a>
-            <div id="Word_Display">{{.Word_Display}}</div>
-        <div class="bloc-texte">      
-        <form action="/Hangman" method="POST">
-            <label for="lettre">
-                <h1>Rentrer votre lettre</h1><br>
-                <div class="NbAttempts"><h3>Il vous reste {{.NbAttempts}} tentative</h3></div>
-            </label><br>
-            <input type="text" name="lettre" id="letter" placeholder="abcdefg..." required><br><br>
-            <input type="submit" value="Valider votre lettre"><br><br><br>
-            <div class="Propo_let">{{.Propo_let}}</div>
-        </form>
+        <div id="Word_Display">{{.Word_Display}}</div>
+        <div class="bloc-texte">
+            <form action="/Hangman" method="POST">
+                <label for="lettre">
+                    <h1>Rentrer votre lettre</h1><br>
+                    <div class="NbAttempts">
+                        <h3>Il vous reste {{.NbAttempts}} tentative</h3>
+                    </div>
+                </label><br>
+                <input type="text" name="lettre" id="letter" placeholder="abcdefg..." required><br><br>
+                <input type="submit" value="Valider votre lettre"><br><br><br>
+                <div class="Propo_let">{{.Propo_let}}</div>
+            </form>
         </div>
     </div>
-  
+
     <div class="Baniere_droite">
         <div id="bloc-hangman">
             {{ if lt .NbAttempts 8}}
@@ -59,34 +64,40 @@
             {{ if lt .NbAttempts 9}}
             <div id="trunc" class="hangman-item" style="height: 50vh;width:0px;">
                 {{ if lt .NbAttempts 7}}
-                <div class="hangman-item" style="transform: rotate(45deg); position:relative; top: -20px; left: 35px;height: 100px;"></div>
+                <div class="hangman-item"
+                    style="transform: rotate(45deg); position:relative; top: -20px; left: 35px;height: 100px;"></div>
                 {{end}}
             </div>
             {{ end }}
             {{ if lt .NbAttempts 10}}
-             <div id="base" style="width: 50%" class="hangman-item"></div>
+            <div id="base" style="width: 50%" class="hangman-item"></div>
             {{end}}
         </div>
     </div>
     {{if eq .Result "lose"}}
-        <div class="perdu">
-            <h1 class="text_perdu">Vous avez perdu</h1>
-            <div class="scorboard">Point: {{.Point}} Win: {{.Win}} Lose: {{.Lose}}</div>
-        </div>
-        <a href="index.html" class="rejouer"><strong>
-            <h2>Recommencer le jeux</h2>
-        </strong></a>
+    <div class="perdu">
+        <h1 class="text_perdu">Vous avez perdu</h1>
+        <div class="scorboard">Point: {{.Point}} Win: {{.Win}} Lose: {{.Lose}}</div>
+    </div>
+    <form action="/Hangman" method="POST">
+        <button class="relaod" name="rejouer" value="rejouer"><strong>
+                <h2>Recommencer le jeux</h2>
+            </strong></button>
+    </form>
     {{end}}
-    {{if eq .Result "win"}}
-        <div class="win">
-            <h1 class="text_gagner">Vous avez Gagner</h1>
-            <div class="scorboard">Point: {{.Point}} Win: {{.Win}} Lose: {{.Lose}}</div>
+    {{if eq .Result "Win"}}
+    <div class="gagner">
+        <h1 class="text_gagner">Vous avez Gagner</h1>
+        <div class="scorboard">Point: {{.Point}} Win: {{.Win}} Lose: {{.Lose}}</div>
 
-        </div>
-        <a href="index.html" class="rejouer"><strong>
-            <h2>Recommencer le jeux</h2>
-        </strong></a>
+    </div>
+    <form action="/Hangman" method="POST">
+        <button class="relaod" name="rejouer" value="rejouer"><strong>
+                <h2>Recommencer le jeux</h2>
+            </strong></button>
+    </form>
     {{end}}
 
 </body>
+
 </html>

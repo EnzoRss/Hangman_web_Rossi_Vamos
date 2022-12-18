@@ -62,12 +62,13 @@ input[type="radio"].choix:checked + label {
 input[type="text"] {
     border-radius: 4px;
     border-color: #000;
+    color: #000;
     height: 20px;
     width: 150px;
     background-color:  rgb(89, 142, 240); 
 }
 input[type= "text"]:hover{
-    background-color: white;
+    color: black;
 }
 
 input[type="submit"] {

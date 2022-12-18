@@ -9,3 +9,6 @@ Noah :
 Html, css page hangman 
 afficher le hangman
 win page , end page + scoreboard
+
+
+Tourjours lancer sur un page sans le cache sinon le programme ne fontionnera pas 

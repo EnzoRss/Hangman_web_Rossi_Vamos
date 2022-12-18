@@ -23,16 +23,20 @@
     left: 200px;
 }
 
-.rejouer {
+.relaod {
     position: absolute;
     top: 80%;
-    left: 10%;
+    left: 15%;
     text-decoration: none;
     color: black;
+    border: 3px solid rgb(62, 112, 203);
+    background-color: rgb(62, 112, 203);
+    border-radius: 5px;
 }
 
-.rejouer:hover{
-    color: white
+.relaod:hover{
+    background-color: white
+    
 }
 
 .Baniere_gauche {
@@ -140,6 +144,7 @@ a {
     position: fixed;
     width: 100%;
     height: 100vh;
+    background-color: rgba(0, 0, 0, 0.508);
 }
 
 .text_gagner {
